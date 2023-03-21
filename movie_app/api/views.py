@@ -24,17 +24,10 @@ class MovieVS(viewsets.ModelViewSet):
     #permission_class = [IsAdminOrReadOnly]
     def list(self, request, *args, **kwargs):
         show_number = 1
-        # start_time = request.query_params.get('starttime')
-        # end_time = request.query_params.get('endtime')
-        # category = request.query_params.get('category')
-        # start_rating = request.query_params.get('startrating')
-        # end_rating = request.query_params.get('endrating')
-        # producer = request.query_params.get('producer')
+
         new = request.query_params.get('new')
         featured = request.query_params.get('featured')
-        
-        # if not start_time and not end_time and not category and not start_rating and not end_rating \
-        #     and producer and not new and not featured:
+
         if not new and not featured:
             return super().list(request)
         if new:
