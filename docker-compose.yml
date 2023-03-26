@@ -3,7 +3,7 @@ services:
   watchmate:
     build: .
     ports:
-      - 8888:8000
+      - 80:8000
     environment:
       ADMIN_NAME: admin
       ADMIN_EMAIL: admin@admin.com
