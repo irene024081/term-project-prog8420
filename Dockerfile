@@ -1,15 +1,9 @@
 # syntax=docker/dockerfile:1.3-labs
 FROM python:3.10.4
 
-ARG UID=1000
-ARG GID=1000
-
 RUN apt-get -qq update && \
     apt-get -qqy install sudo curl netcat && \
     rm -rf /var/lib/apt/lists/
-
-RUN groupadd -g "${GID}" watchmate \
-    && useradd --create-home --no-log-init -u "${UID}" -g "${GID}" watchmate
 
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
     adduser --disabled-password --gecos "" watchmate && \
