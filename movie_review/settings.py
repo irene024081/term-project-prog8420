@@ -25,9 +25,8 @@ SECRET_KEY = 'ka^uk4b3du)%m)5g%nzt*5x%3l8=(c-z(j^8+gs6lbwbbyj=k%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
+ALLOWED_HOSTS = ["*","localhost"]
+CORS_ORIGIN_ALLOW_ALL = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'movie_app',
     'rest_framework',
     'rest_framework.authtoken',
@@ -56,6 +56,8 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
