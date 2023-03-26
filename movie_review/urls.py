@@ -20,6 +20,8 @@ from movie_app.api import urls
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework import permissions
+from django.conf import settings
+from django.conf.urls.static import static
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -38,7 +40,7 @@ urlpatterns = [
     path('movie/', include(urls)),
     path('accounts/', include('dj_rest_auth.urls')),
     path('accounts/registration', include('dj_rest_auth.registration.urls')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
 
