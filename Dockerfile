@@ -9,7 +9,7 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
     adduser --disabled-password --gecos "" watchmate && \
     adduser watchmate sudo
 
-
+USER watchmate
 WORKDIR /home/watchmate
 
 RUN mkdir /home/watchmate/database
@@ -20,10 +20,10 @@ ENV PYTHONUNBUFFERED 1
 RUN curl -sSL https://install.python-poetry.org | python3 -
 ENV PATH=$PATH:/home/watchmate/.local/bin
 
-COPY  pyproject.toml poetry.lock ./
+COPY --chown=watchmate pyproject.toml poetry.lock ./
 
 RUN poetry install --no-dev
 
-COPY  ./ ./
+COPY --chown=watchmate ./ ./
 
 ENTRYPOINT [ "./entrypoint.sh" ]
