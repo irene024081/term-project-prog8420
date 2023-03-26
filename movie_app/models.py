@@ -6,17 +6,21 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.contrib.auth.models import User
 
 class Movie(models.Model):
-    movie_name = models.CharField(max_length=50)
-    release_date = models.DateField()
-    movie_description = models.TextField()
-    movie_category = models.CharField(max_length=300)
-    platform = models.CharField(max_length=200)
-    avg_rating = models.FloatField(default= 0)
-    num_rating = models.IntegerField(default= 0)
+    name = models.CharField(max_length=50)
+    desc = models.TextField()
+    title_image = models.URLField(null = True, blank=True)
+    image = models.URLField(null = True, blank=True)
+    category = models.CharField(max_length=300)
+    language = models.CharField(max_length=200)
+    year = models.CharField(max_length=200)
+    time = models.CharField(max_length=200)
+    video = models.URLField(max_length=500, null = True, blank=True)
+    rate = models.FloatField(default= 0)
+    review_num = models.IntegerField(default= 0)
     producer = models.CharField(max_length=200)    
     
     def __str__(self):
-        return self.movie_name
+        return self.name
 
 class WatchList(models.Model):
     watchlist_name = models.CharField(max_length=300)
@@ -32,7 +36,7 @@ class Review(models.Model):
     review_user = models.ForeignKey(User, on_delete=models.CASCADE)
     rating = models.PositiveIntegerField(validators=[MinValueValidator(1),MaxValueValidator(5)])
     description = models.CharField(max_length=200, null=True)
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name="reviews")
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name="reviews_movie")
     user_like = models.BooleanField(default=False)
     create_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
