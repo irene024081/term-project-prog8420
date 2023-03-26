@@ -12,6 +12,8 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
 USER watchmate
 WORKDIR /home/watchmate
 
+RUN mkdir -p /opt/watchmate
+
 ENV PYTHONUNBUFFERED 1
 RUN curl -sSL https://install.python-poetry.org | python3 -
 ENV PATH=$PATH:/home/watchmate/.local/bin
