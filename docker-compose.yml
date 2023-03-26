@@ -9,4 +9,4 @@ services:
       ADMIN_EMAIL: admin@admin.com
       ADMIN_PASSWORD: 8420admin
     volumes:
-      - /opt/watchmate:/opt/watchmate/
+      - ~/watchmate_db:/home/watchmate/database

@@ -9,12 +9,12 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
     adduser --disabled-password --gecos "" watchmate && \
     adduser watchmate sudo
 
-RUN mkdir -p /opt/watchmate
-
 USER watchmate
 WORKDIR /home/watchmate
 
-
+RUN mkdir /home/watchmate/database
+RUN mkdir /home/watchmate/code
+WORKDIR /home/watchmate/code
 
 ENV PYTHONUNBUFFERED 1
 RUN curl -sSL https://install.python-poetry.org | python3 -

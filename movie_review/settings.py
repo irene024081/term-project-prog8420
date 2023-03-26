@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'movie_review.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': "/opt/watchmate/db.sqlite3",
+        'NAME': os.path.join('/home/watchmate/database', 'db.sqlite3'),
     }
 }
 
