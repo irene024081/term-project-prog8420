@@ -8,5 +8,6 @@ services:
       ADMIN_NAME: admin
       ADMIN_EMAIL: admin@admin.com
       ADMIN_PASSWORD: 8420admin
+      PROD: 1
     volumes:
       - ~/watchmate_db:/home/watchmate/database
