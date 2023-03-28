@@ -3,8 +3,8 @@ from movie_app.models import Movie, Review, WatchList
 
 
 class MovieFilter(filters.FilterSet):
-    start_year = filters.NumberFilter(field_name="year", lookup_expr='year__gte')
-    end_year = filters.NumberFilter(field_name="year", lookup_expr='year__lte')
+    start_year = filters.NumberFilter(field_name="year", lookup_expr='gte')
+    end_year = filters.NumberFilter(field_name="year", lookup_expr='lte')
     category = filters.CharFilter(field_name="category", lookup_expr='iexact')
     start_rating = filters.NumberFilter(field_name="rate", lookup_expr='gte')
     end_rating = filters.NumberFilter(field_name="rate", lookup_expr='lte')

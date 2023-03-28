@@ -12,7 +12,7 @@ class Movie(models.Model):
     image = models.URLField(null = True, blank=True)
     category = models.CharField(max_length=300)
     language = models.CharField(max_length=200)
-    year = models.CharField(max_length=200)
+    year = models.IntegerField(max_length=200)
     time = models.CharField(max_length=200)
     video = models.URLField(max_length=500, null = True, blank=True)
     rate = models.FloatField(default= 0)
