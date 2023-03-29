@@ -52,7 +52,8 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_REQUIRED = True
 
 REST_AUTH = {
     'USE_JWT': True,
@@ -156,3 +157,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'email-smtp.us-east-1.amazonaws.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 2587
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = "AKIAWSFPJL2CGP34HKFF" #sender's email-id
+EMAIL_HOST_PASSWORD = "BCtaDoVoI9QXPQiLrf/0JuxkyObAl7hMJGjLrixAK47s" #password associated with above email-id
+DEFAULT_FROM_EMAIL = "watchmate.prog8420@gmail.com"
