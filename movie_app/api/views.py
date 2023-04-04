@@ -49,8 +49,8 @@ class UserReview(generics.ListCreateAPIView):
 
 
     def get_queryset(self):
-        username = self.kwargs['username']
-        return Review.objects.filter(review_user__username=username)
+        user = self.request.user
+        return Review.objects.filter(review_user=user)
 
 class ReviewList(generics.ListCreateAPIView):
     """
@@ -68,6 +68,12 @@ class ReviewList(generics.ListCreateAPIView):
         pk = self.kwargs['pk']
         return Review.objects.filter(movie=pk)
     
+    def perform_create(self, serializer):
+        movie_id = self.kwargs['pk']
+        movie = Movie.objects.get(id=movie_id)
+        user = self.request.user
+        serializer.save(movie=movie, review_user = user)
+    
 class ReviewDetail(generics.RetrieveUpdateDestroyAPIView):
     """
         GET: retrieve a specific review with review id <pk>
@@ -79,6 +85,9 @@ class ReviewDetail(generics.RetrieveUpdateDestroyAPIView):
     # permission_classes = [IsReviewUserOrReadOnly]
     # throttle_classes = [ScopedRateThrottle]
     # throttle_scope = 'review_detail'
+    def get_queryset(self):
+        pk = self.kwargs['pk']
+        return Review.objects.filter(movie=pk)
 
 
 class UserWatchList(generics.ListCreateAPIView):

@@ -8,7 +8,7 @@ class ReviewSerializer(serializers.ModelSerializer):
     #watchlist = serializers.StringRelatedField(read_only=True)
     class Meta:
         model = Review
-        fields = "__all__"
+        exclude = ['movie']
 
 class MovieSerializer(serializers.ModelSerializer):
     reviews = ReviewSerializer(many = True, read_only = True)
