@@ -49,11 +49,14 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
     'django_filters',
     'drf_yasg',
-
 ]
+
 SITE_ID = 1
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
+REST_AUTH = {
+    'USE_JWT': True,
+}
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -90,12 +93,11 @@ WSGI_APPLICATION = 'movie_review.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join('/home/watchmate/database', 'db.sqlite3'),
-        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join('/home/watchmate/database', 'db.sqlite3') if os.getenv("PROD") else os.path.join(BASE_DIR, 'db.sqlite3'),
+       #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -119,6 +121,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+    ),
     'DEFAULT_THROTTLE_CLASSES': [
         'rest_framework.throttling.AnonRateThrottle',
         'rest_framework.throttling.UserRateThrottle'
