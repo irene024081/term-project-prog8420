@@ -53,7 +53,7 @@ class UserReview(generics.ListCreateAPIView):
         movie_id = self.kwargs['pk']
         movie = Movie.objects.get(id=movie_id)
         if not user.id:
-            return Review.objects.filter(movie=movie).order_by('-update_date')[:3]
+            return Review.objects.none()
         return Review.objects.filter(movie=movie,review_user=user)
 
 class ReviewList(generics.ListCreateAPIView):
