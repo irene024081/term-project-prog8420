@@ -105,14 +105,16 @@ class UserWatchList(generics.ListCreateAPIView):
     # throttle_classes = [ReviewListThrottle]
 
     def get_queryset(self):
-        username = self.kwargs['username']
-        return WatchList.objects.filter(user__username=username)
+        
+        user = self.request.user
+        if not user.id:
+            return WatchList.objects.none()
+        return WatchList.objects.filter(user=user)
     
     def perform_create(self, serializer):
-        username = self.kwargs['username']
-        user = User.objects.get(username = username)
- 
-        serializer.save(user=user)
+        user = self.request.user
+        if user.id:
+            serializer.save(user.user)
 
     
 class WatchListDetail(generics.RetrieveUpdateDestroyAPIView):
