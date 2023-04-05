@@ -105,7 +105,7 @@ class UserWatchList(generics.ListCreateAPIView):
     # throttle_classes = [ReviewListThrottle]
 
     def get_queryset(self):
-        
+        print("get_queryset")
         user = self.request.user
         if not user.id:
             return WatchList.objects.none()
