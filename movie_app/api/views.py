@@ -92,7 +92,7 @@ class ReviewDetail(generics.RetrieveUpdateDestroyAPIView):
     # throttle_scope = 'review_detail'
     def get_queryset(self):
         pk = self.kwargs['pk']
-        return Review.objects.filter(movie=pk)
+        return Review.objects.filter(id=pk)
 
 
 class UserWatchList(generics.ListCreateAPIView):
