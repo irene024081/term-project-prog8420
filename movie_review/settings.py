@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from datetime import timedelta
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -96,8 +97,7 @@ WSGI_APPLICATION = 'movie_review.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        #'NAME': os.path.join('/home/watchmate/database', 'db.sqlite3') if os.getenv("PROD") else os.path.join(BASE_DIR, 'db.sqlite3'),
-       'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join('/home/watchmate/database', 'db.sqlite3') if os.getenv("PROD") else os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -135,6 +135,11 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=365),
+    'ROTATE_REFRESH_TOKENS': True,
 }
 
 # Internationalization
