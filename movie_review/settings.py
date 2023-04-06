@@ -52,7 +52,7 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
 ACCOUNT_EMAIL_REQUIRED = True
 
 REST_AUTH = {
@@ -163,6 +163,6 @@ EMAIL_HOST = 'email-smtp.us-east-1.amazonaws.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 2587
 EMAIL_USE_SSL = False
-EMAIL_HOST_USER = os.get("EMAIL_HOST_USER") #sender's email-id
-EMAIL_HOST_PASSWORD = os.get("EMAIL_HOST_PASSWORD") #password associated with above email-id
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = "watchmate.prog8420@gmail.com"
