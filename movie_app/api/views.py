@@ -1,12 +1,11 @@
 from movie_app.models import Movie, Review, WatchList
 from rest_framework import generics, viewsets
-from rest_framework.views import APIView
 from movie_app.api.serializers import (MovieSerializer, ReviewSerializer, WatchListSerializer)
-from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from django.contrib.auth.models import User
 from movie_app.api.filters import MovieFilter
 from django_filters import rest_framework as filters
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 
 class MovieVS(viewsets.ModelViewSet):
@@ -101,7 +100,7 @@ class UserWatchList(generics.ListCreateAPIView):
         POST: create new watchlist by a user whose username is <username>
     """
     serializer_class = WatchListSerializer
-    # permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly]
     # throttle_classes = [ReviewListThrottle]
 
     def get_queryset(self):
