@@ -1,3 +1,14 @@
+## How to run the django project
+
+```
+poetry install
+poetry run python manage.py migrate --noinput
+poetry run python manage.py initadmin admin admin@example.com admin8420
+poetry run python manage.py runserver
+```
+
+Now you can access the admin portal at `127.0.0.1:8000/admin` with username `admin` and password `admin8420`
+
 ## Set Up Your Dev Environment
 
 ### Install Poetry
@@ -39,13 +50,3 @@ To deactivate:
 ```bash
     exit
 ```
-
-## How to run the django project
-
-We use `docker` to manage the project. To run this project, ensure that `docker` is installed and configured correctly.
-
-1. Ensure that there is a folder called `watchmate_db` in your `$HOME` directory.
-2. Grant permission to the `watchmate_db` folder to ensure that it can be accessed by `docker`. To simplify, you can set it to `777`.
-3. Execute `docker compose up --build` to start the project.
-4. Access the admin portal by visiting `127.0.0.1/admin` using `admin` as the username and `admin8420` as the password.
-5. The data created by this project will be stored in the `watchmate_db` folder located in your `$HOME` directory.
