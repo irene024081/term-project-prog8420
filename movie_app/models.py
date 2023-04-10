@@ -27,7 +27,7 @@ class WatchList(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="watchlist")
     active = models.BooleanField(default=True)
     create_date = models.DateTimeField(auto_now_add=True)
-    movie = models.ManyToManyField(Movie, related_name="watchlist")
+    movie = models.ManyToManyField(Movie, blank=True, related_name="watchlist")
     def __str__(self) -> str:
         return str(self.watchlist_name)  + " | " + str(self.user)
     

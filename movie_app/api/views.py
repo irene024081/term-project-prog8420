@@ -112,7 +112,7 @@ class UserWatchList(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         user = self.request.user
         if user.id:
-            serializer.save(user.user)
+            serializer.save(user=user)
 
     
 class WatchListDetail(generics.RetrieveUpdateDestroyAPIView):
