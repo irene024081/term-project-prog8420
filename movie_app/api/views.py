@@ -22,7 +22,7 @@ class MovieVS(viewsets.ModelViewSet):
     filterset_class = MovieFilter
     #permission_class = [IsAdminOrReadOnly]
     def list(self, request, *args, **kwargs):
-        show_number = 1
+        show_number = 10
 
         new = request.query_params.get('new')
         featured = request.query_params.get('featured')
@@ -30,11 +30,11 @@ class MovieVS(viewsets.ModelViewSet):
         if not new and not featured:
             return super().list(request)
         if new:
-            movie_queryset = Movie.objects.all().order_by(('-release_date'))[:show_number]
+            movie_queryset = Movie.objects.all().order_by(('-year'))[:show_number]
             serializer = self.get_serializer(movie_queryset, many = True)
             return Response(serializer.data)
         if featured:
-            movie_queryset = Movie.objects.all().order_by(('-avg_rating'))[:show_number]
+            movie_queryset = Movie.objects.all().order_by(('-rate'))[:show_number]
             serializer = self.get_serializer(movie_queryset, many = True)
             return Response(serializer.data)
             

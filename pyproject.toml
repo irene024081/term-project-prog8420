@@ -51,6 +51,8 @@ uritemplate = "4.1.1"
 urllib3 = "1.26.15"
 hypercorn = "^0.14.3"
 djangorestframework-simplejwt = "^5.2.2"
+pytest = "^7.3.0"
+pytest-django = "^4.5.2"
 
 [build-system]
 build-backend = "poetry.core.masonry.api"
